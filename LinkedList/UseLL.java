@@ -18,6 +18,8 @@ public class UseLL {
         Node<Integer> head = takeInput();
         head = insertAt(head, 100, 0);
         print(head);
+        System.out.println();
+        System.out.println(midOfLL(head));
     }
 
     // PRINTING THE LINKED LIST
@@ -27,6 +29,7 @@ public class UseLL {
             temp = temp.next;
         }
     }
+
     // TAKE LL INPUT
     public static Node<Integer> takeInput(){
         Scanner sc = new Scanner(System.in);
@@ -54,6 +57,7 @@ public class UseLL {
         sc.close();
         return head;
     }
+
     // INSERT NODE AT A GIVEN INDEX
     public static Node<Integer> insertAt(Node<Integer> head,int data,int idx){
         int x = 0;
@@ -71,5 +75,34 @@ public class UseLL {
         newNode.next = temp.next;
         temp.next = newNode;
         return head;
+    }
+
+    // DELETE NODE AT GIVEN INDEX
+    public static void deleteNode(Node<Integer> head , int idx){
+        Node<Integer> temp = head;
+        int x=0;
+        while(x<idx-2){
+            temp = temp.next;
+            x++;
+        }
+        temp.next = temp.next.next;
+    }
+
+    // MIDPOINT OF LINKED LIST
+    public static int midOfLL(Node<Integer> head){
+        Node<Integer> temp = head;
+        int size=0;
+        while(temp!=null){
+            temp = temp.next;
+            size++;
+        }
+        System.out.println(size);
+        temp = head;
+        int mid = 0;
+        while(mid!=size/2-1){
+            temp = temp.next;
+            mid++;
+        }
+        return temp.data;
     }
 }
