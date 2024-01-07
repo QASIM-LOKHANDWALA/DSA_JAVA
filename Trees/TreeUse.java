@@ -77,4 +77,67 @@ public class TreeUse {
             print(root.children.get(i));
         }
     }
+
+    // COUNT NUMBER OF NODES IN A TREE
+    public static int numNodes(TreeNode<Integer> root){
+        if(root == null){
+            return 0;
+        }
+        int count = 1;
+        for(int i=0 ; i<root.children.size() ; i++){
+            count += numNodes(root.children.get(i));
+        }
+        return count;
+    }
+
+    // FIND LARGEST NODE
+    public static int maxinum(TreeNode<Integer> root){
+        if(root == null){
+            return Integer.MIN_VALUE;
+        }
+        int ans = root.data;
+        for(int i=0 ; i<root.children.size() ; i++){
+            int LARGEST = maxinum(root.children.get(i));
+            if(LARGEST>ans){
+                ans=LARGEST;
+            }
+        }
+        return ans;
+    }
+
+    // PRINT NODES AT A DEPTH "K"
+    public static void printAtK(TreeNode<Integer> root,int k){
+        if(k<0){
+            return;
+        }
+        if(k==0){
+            System.out.println(root.data);
+            return;
+        }
+        for(int i=0 ; i<root.children.size() ; i++){
+            printAtK(root.children.get(i), k-1);
+        }
+    }
+
+    // PRE ORDER TRAVERSAL
+    public static void preOrder(TreeNode<Integer> root){
+        if(root==null){
+            return;
+        }
+        System.out.print(root.data+" ");
+        for(int i=0 ; i<root.children.size() ; i++){
+            preOrder(root.children.get(i));
+        }
+    }
+
+    // POST ORDER TRAVERSAL
+    public static void preOrder(TreeNode<Integer> root){
+        if(root==null){
+            return;
+        }
+        for(int i=0 ; i<root.children.size() ; i++){
+            preOrder(root.children.get(i));
+        }
+        System.out.print(root.data+" ");
+    }
 }
