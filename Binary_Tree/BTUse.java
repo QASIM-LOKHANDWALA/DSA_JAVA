@@ -5,15 +5,14 @@ import java.util.Scanner;
 public class BTUse {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        BTUse t = new BTUse();
-        Node<Integer> root = t.takeInput(sc);
-        t.printTree(root);
+        Node<Integer> root = takeInput(sc);
+        printTree(root);
     }
 
     // TAKE INPUT RECURSIVELY
-    public Node<Integer> takeInput(Scanner sc){
+    public static Node<Integer> takeInput(Scanner sc){
         int rootData;
-        System.out.print("Enter node data: ");
+        System.out.print("Enter root data: ");
         rootData = sc.nextInt();
         if(rootData == -1){
             return null;
@@ -25,7 +24,7 @@ public class BTUse {
     }
 
     // PRINT TREE RECURSUVELY
-    public void printTree(Node<Integer> root){
+    public static void printTree(Node<Integer> root){
         if(root==null){
             return;
         }
@@ -37,5 +36,7 @@ public class BTUse {
             s += "R " + root.right.data;
         }
         System.out.println(s);
+        printTree(root.left);
+        printTree(root.right);
     }
 }
