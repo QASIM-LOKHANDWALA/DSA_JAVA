@@ -39,27 +39,28 @@ public class TreeUse {
 
     // TAKE INPUT LEVEL WISE
     public static TreeNode<Integer> takeInputLevel(){
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter root data: ");
-        int n = sc.nextInt();
-        TreeNode<Integer> root = new TreeNode<Integer>(n);
-        Queue<TreeNode<Integer>> pendingNode = new LinkedList<>();
-        pendingNode.add(root);
-        while(!pendingNode.isEmpty()){
-            TreeNode<Integer> frontNode = pendingNode.remove();
-            System.out.println("Enter number of children of " + frontNode.data + ": ");
-            int nuChildren = sc.nextInt();
-            int x=0;
-            while(x!=nuChildren){
-                System.out.print("Enter " + (x+1) + "th child of " + frontNode.data + ": ");
-                int child = sc.nextInt();
-                TreeNode<Integer> childNode = new TreeNode<Integer>(child);
-                pendingNode.add(childNode);
-                frontNode.children.add(childNode);
-                x++;
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("Enter root data: ");
+            int n = sc.nextInt();
+            TreeNode<Integer> root = new TreeNode<Integer>(n);
+            Queue<TreeNode<Integer>> pendingNode = new LinkedList<>();
+            pendingNode.add(root);
+            while(!pendingNode.isEmpty()){
+                TreeNode<Integer> frontNode = pendingNode.remove();
+                System.out.println("Enter number of children of " + frontNode.data + ": ");
+                int nuChildren = sc.nextInt();
+                int x=0;
+                while(x!=nuChildren){
+                    System.out.print("Enter " + (x+1) + "th child of " + frontNode.data + ": ");
+                    int child = sc.nextInt();
+                    TreeNode<Integer> childNode = new TreeNode<Integer>(child);
+                    pendingNode.add(childNode);
+                    frontNode.children.add(childNode);
+                    x++;
+                }
             }
+            return root;
         }
-        return root;
     }
 
     // PRINT TREE RECURSIVELY

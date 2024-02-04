@@ -3,7 +3,7 @@ import java.util.*;
 
 public class mapUse {
     public static void main(String[] args) {
-
+ 
         // Majority of the functions are completed in O(n) complexity
         HashMap<String,Integer> map = new HashMap<>();
         // Adding key,value pair in map
