@@ -35,7 +35,8 @@ class questions {
         */
 
         // Implement Stack Using Queue
-        StackUsingQueue stack = new StackUsingQueue();
+        
+        StackUsingQueue2 stack = new StackUsingQueue2();
         stack.push(10);
         stack.push(20);
         stack.push(30);
@@ -47,9 +48,11 @@ class questions {
         System.out.println(stack.top());
 
         System.out.println(stack.pop());
-
+        
 
     }
+
+    // Reverse the Queue
     static Queue<Integer> reverseQueue(Queue<Integer> q){
         Stack<Integer> temp = new Stack<>();
         while(!q.isEmpty()){
@@ -60,7 +63,9 @@ class questions {
         }
         return q;
     }
-    static Queue reverseKElements(Queue<Integer> q,int n){
+
+    // Reverse the First K Elements In Queue
+    static Queue<Integer> reverseKElements(Queue<Integer> q,int n){
         Stack<Integer> temp = new Stack<>();
        for(int i=0 ; i<n ; i++){
         temp.push(q.remove());
@@ -74,7 +79,10 @@ class questions {
         return q;
     }
 }
-class StackUsingQueue{
+
+// Implement Stack Using Queue
+// Time Complexities --> push O(1) , pop & top O(n)
+class StackUsingQueue1{
     Queue<Integer> q = new LinkedList<>();
     
     public void push(int x){
@@ -92,6 +100,27 @@ class StackUsingQueue{
         for(int i=1 ; i<=q.size()-1 ; i++){
             q.add(q.remove());
         }
+        return q.remove();
+    }
+    public boolean isEmpty(){
+        return q.size()==0;
+    }
+}
+// Implement Stack Using Queue
+// Time Complexities --> pop & top O(1) , push O(n)
+class StackUsingQueue2{
+    Queue<Integer> q = new LinkedList<>();
+    
+    public void push(int x){
+        q.add(x);
+        for(int i=1 ; i<=q.size()-1 ; i++){
+            q.add(q.remove());
+        }
+    }
+    public int top(){
+        return q.peek();
+    }
+    public int pop(){
         return q.remove();
     }
     public boolean isEmpty(){
