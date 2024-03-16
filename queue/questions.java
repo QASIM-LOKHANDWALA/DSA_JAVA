@@ -35,8 +35,8 @@ class questions {
         */
 
         // Implement Stack Using Queue
-        
-        StackUsingQueue2 stack = new StackUsingQueue2();
+        /* 
+        StackUsingQueue1 stack = new StackUsingQueue1();
         stack.push(10);
         stack.push(20);
         stack.push(30);
@@ -48,7 +48,24 @@ class questions {
         System.out.println(stack.top());
 
         System.out.println(stack.pop());
-        
+        */
+
+        QueueUsingStack2 queue = new QueueUsingStack2();
+        queue.push(10);
+        queue.push(20);
+        queue.push(30);
+        queue.push(40);
+        queue.push(50);
+        queue.push(60);
+        queue.push(70);
+
+        System.out.println(queue.pop());
+        System.out.println(queue.peek());
+
+        System.out.println();
+        while (!queue.isEmpty()) {
+            System.out.print(queue.pop() + " ");
+        }
 
     }
 
@@ -125,5 +142,69 @@ class StackUsingQueue2{
     }
     public boolean isEmpty(){
         return q.size()==0;
+    }
+}
+
+// Implementing Queue using Stacks
+// push efficient code
+class QueueUsingStack1{
+    Stack<Integer> st = new Stack<>();
+    Stack<Integer> helper = new Stack<>();
+
+    public void push(int x){
+        st.push(x);
+    }
+    public int pop(){
+        while(st.size()>1){
+            helper.push(st.pop());
+        }
+        int x = st.pop();
+        while (helper.size()>0) {
+            st.push(helper.pop());
+        }
+        return x;
+    }
+    public int peek(){
+        while(st.size()>1){
+            helper.push(st.pop());
+        }
+        int x = st.peek();
+        while (helper.size()>0) {
+            st.push(helper.pop());
+        }
+        return x;
+    }
+    public boolean isEmpty(){
+        return st.size()==0;
+    }
+}
+
+// Implementing Queue using Stacks
+// pop & peek efficient code
+class QueueUsingStack2{
+    Stack<Integer> st = new Stack<>();
+    Stack<Integer> helper = new Stack<>();
+
+    public void push(int x){
+        if(st.isEmpty()){
+            st.push(x);
+        }else{
+            while (st.size()>0) {
+                helper.push(st.pop());
+            }
+            st.push(x);
+            while (helper.size()>0) {
+                st.push(helper.pop());
+            }
+        }
+    }
+    public int pop(){
+        return st.pop();
+    }
+    public int peek(){
+        return st.peek();
+    }
+    public boolean isEmpty(){
+        return st.size()==0;
     }
 }
