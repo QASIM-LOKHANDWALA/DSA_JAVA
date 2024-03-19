@@ -60,5 +60,16 @@ public class StackUsingArray {
             }
         }
     }
+    public void peep(int i){
+        if(size()==0){
+            System.out.println("Stack is empty");
+        }else{
+            if(top-i+1 <= 0){
+                System.out.println("Invalid Position");
+            }else{
+                System.out.println(data[top-i+1]);
+            }
+        }
+    }
 
 }

@@ -70,7 +70,7 @@ class questions {
         }
         */
 
-        //  First Negative in each windoe of size 'k'
+        //  First Negative in each window of size k
         long[] arr = {12,-1,-7,8,-15,30,16,28};
         long[] result = firstNeg(arr, 3);
         for (int i=0 ; i<result.length ; i++) {
@@ -106,7 +106,7 @@ class questions {
         return q;
     }
 
-    //  First Negative in each windoe of size 'k'
+    //  First Negative in each window of size k
     static long[] firstNeg(long[] arr,int k){
         Queue<Integer> temp = new LinkedList<>();
         int size = arr.length-k+1;
@@ -119,7 +119,7 @@ class questions {
         }
         for(int i=0 ; i<arr.length-k+1 ; i++){
             if(temp.size()>0 && temp.peek()<i) temp.remove();
-            
+
             if(temp.size()>0 && temp.peek()<=i+k-1) result[i] = arr[temp.peek()];
             else if(temp.size()==0) result[i] = 0;
             else result[i] = 0;

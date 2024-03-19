@@ -7,7 +7,10 @@ public class usingSA {
             stack.push(i);
         }
         stack.display();
-
-
+        System.out.println();
+        System.out.print("3rd Element from top is : ");
+        stack.peep(3);
+        System.out.print("10th Element from top is : ");
+        stack.peep(10);
     }
 }
