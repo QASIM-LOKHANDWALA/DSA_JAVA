@@ -71,11 +71,21 @@ class questions {
         */
 
         //  First Negative in each window of size k
+        /* 
         long[] arr = {12,-1,-7,8,-15,30,16,28};
         long[] result = firstNeg(arr, 3);
         for (int i=0 ; i<result.length ; i++) {
             System.out.println(result[i]);
         }
+        */
+
+        //  Reorder the queue such that you interleave 1st and 2nd half
+        Queue<Integer> q = new LinkedList<>();
+        for(int i=1 ; i<=8 ; i++){
+            q.add(i);
+        }
+        reorder(q);
+
 
     }
 
@@ -126,6 +136,34 @@ class questions {
         }
 
         return result;
+    }
+
+    //  Reorder the queue such that you interleave 1st and 2nd half
+    static void reorder(Queue<Integer> q){
+       int n = q.size();
+       Stack<Integer> st = new Stack<>();
+       for(int i=1 ; i<=n/2 ; i++){
+        st.push(q.remove());
+       } 
+       while (st.size()>0) {
+        q.add(st.pop());
+       }
+       for(int i=1 ; i<=n/2 ; i++){
+        st.push(q.remove());
+       } 
+       while (st.size()>0) {
+        q.add(st.pop());
+        q.add(q.remove());
+       }
+
+       while (q.size()>0) {
+        st.push(q.remove());
+       }
+       while (st.size()>0) {
+        q.add(st.pop());
+       }
+
+       System.out.println(q.toString());
     }
 }
 
