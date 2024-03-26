@@ -80,12 +80,17 @@ class questions {
         */
 
         //  Reorder the queue such that you interleave 1st and 2nd half
+        /*
         Queue<Integer> q = new LinkedList<>();
         for(int i=1 ; i<=8 ; i++){
             q.add(i);
         }
         reorder(q);
+        */
 
+        // Evaluating Infix Expression
+        String str = "9-5+3+4/6";
+        infix(str);
 
     }
 
@@ -164,6 +169,57 @@ class questions {
        }
 
        System.out.println(q.toString());
+    }
+
+    // Evaluating Infix Expression
+    static void infix(String str) {
+        Stack<Integer> val = new Stack<>();
+        Stack<Character> op = new Stack<>();
+
+        for(int i=0 ; i<str.length() ; i++){
+            char ch = str.charAt(i);    
+            int ascii = (int)ch;    // ASCII '0' -> 48 , '9' -> 57
+            if(ascii>=48 && ascii<=57){
+                val.push(ascii - 48);
+            } else if(op.size()==0){
+                op.push(ch);
+            } else {
+                if(ch=='+' || ch =='-') {
+                    int val2 = val.pop();
+                    int val1 = val.pop();
+                    if(op.peek() == '-') val.push(val1-val2);
+                    if(op.peek() == '*') val.push(val1*val2); 
+                    if(op.peek() == '/') val.push(val1/val2); 
+                    if(op.peek() == '+') val.push(val1+val2); 
+                    op.pop();
+                    op.push(ch);
+                }
+                if(ch=='*' || ch =='/') {
+                    if(op.peek()=='*' || op.peek()=='/'){
+                        int val2 = val.pop();
+                        int val1 = val.pop();
+                        if(op.peek() == '/') val.push(val1/val2); 
+                        if(op.peek() == '*') val.push(val1*val2); 
+                        op.pop();
+                        op.push(ch);
+                    }else{
+                        op.push(ch);
+                    }
+                }
+            }
+        }
+        while (val.size()>1) {
+            int val2 = val.pop();
+            int val1 = val.pop();
+
+            if(op.peek() == '-') val.push(val1-val2);
+            if(op.peek() == '*') val.push(val1*val2); 
+            if(op.peek() == '/') val.push(val1/val2); 
+            if(op.peek() == '+') val.push(val1+val2); 
+
+            op.pop();
+        }
+        System.out.println(val.peek());
     }
 }
 
